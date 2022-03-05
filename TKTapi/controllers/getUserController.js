@@ -1,8 +1,9 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); //gestion du token
 const conn = require('../dbConnexion').promise();
 
 exports.getUser = async(req, res, next) => {
     try {
+        //on vérifie si le token existe
         if (!req.headers.authorization ||
             !req.headers.authorization.startsWith('Bearer') ||
             !req.headers.authorization.split(' ')[1]
@@ -11,9 +12,11 @@ exports.getUser = async(req, res, next) => {
                 message: "Please provide the token",
             });
         }
+        //on commence à lire le token apres Bearer
         const theToken = req.headers.authorization.split(' ')[1];
         const decoded = jwt.verify(theToken, 'the-super-strong-secret');
 
+        //on affiche le user connecté avec son token
         const [row] = await conn.execute(
             "SELECT `id`,`username` FROM `user` WHERE `id`=?", [decoded.id]
         );
