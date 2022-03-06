@@ -1,21 +1,19 @@
 const express = require('express');
-const routes = require('./routes/userRoutes'); //on appelle les routes
+
+//on appelle les routes d'authentifications
+const user = require('./routes/userRoutes');
+
+//on appelle les routes des missions
+const mission = require('./routes/missionsRoutes')
+
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); //on renvoit au format json
 
 app.use(express.urlencoded({ extended: true })); //pour récupérer les infos grâce au body
 
-app.use(routes);
-
-// gestion des erreurs liées à la bdd
-app.use((err, req, res, next) => {
-    err.statusCode = err.statusCode || 500;
-    err.message = err.message || "Erreur interne au serveur";
-    res.status(err.statusCode).json({
-        message: err.message,
-    });
-});
+app.use(user);
+app.use(mission);
 
 //on ouvre le serveur en local
 app.listen(3000, () => console.log('Le serveur est ouvert : http://localhost:3000'));
