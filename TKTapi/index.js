@@ -1,10 +1,12 @@
 const express = require('express');
 
-//on appelle les routes d'authentifications
+//on appelle toutes les routes
 const user = require('./routes/userRoutes');
-
-//on appelle les routes des missions
 const mission = require('./routes/missionsRoutes')
+const niveau = require('./routes/niveauRoutes')
+const continent = require('./routes/continentRoutes')
+const etatMission = require('./routes/etatMissionRoutes')
+const type = require('./routes/typeRoutes')
 
 const app = express();
 
@@ -14,6 +16,10 @@ app.use(express.urlencoded({ extended: true })); //pour récupérer les infos gr
 
 app.use(user);
 app.use(mission);
+app.use(niveau);
+app.use(continent);
+app.use(etatMission);
+app.use(type);
 
 //on ouvre le serveur en local
 app.listen(3000, () => console.log('Le serveur est ouvert : http://localhost:3000'));
