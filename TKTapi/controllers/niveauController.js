@@ -9,7 +9,7 @@ exports.findAll = async(req, res, next) => {
         );
         if (rows.length > 0) {
             return res.json({
-                mission: rows[0]
+                niveau: rows
             })
         }
     } catch (err) {
