@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 //on appelle le controllers
-const { findAll, create, findOne, update, drop } = require('../controllers/continentController');
+const { findAll, create, findOne, update, drop } = require('../controllers/enclosController');
 
 //on défini les routes
 router.get('/enclos', findAll);

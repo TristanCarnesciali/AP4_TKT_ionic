@@ -9,7 +9,7 @@ exports.findAll = async(req, res, next) => {
         );
         if (rows.length > 0) {
             return res.json({
-                espece: rows[0]
+                espece: rows
             })
         }
     } catch (err) {

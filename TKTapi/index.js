@@ -14,6 +14,11 @@ const espece = require('./routes/especeRoutes.js');
 const sante = require('./routes/santeRoutes.js');
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors({
+    origin: 'https://localhost:3000'
+}));
 
 app.use(express.json()); //on renvoit au format json
 
