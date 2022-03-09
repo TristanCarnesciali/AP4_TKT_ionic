@@ -19,7 +19,6 @@ export class MissionsComponent implements OnInit {
     this.authService.getAll().subscribe((data: any)=>{
       this.missionData = data.mission;
       console.log(this.missionData);
-      console.log("ID : " + id)
     })
   }
 }

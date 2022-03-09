@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { TokenStorageService } from './_services/token-storage.service';
+
+import { Platform } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +11,35 @@ import { TokenStorageService } from './_services/token-storage.service';
 })
 
 export class AppComponent {
-
-  missionList = [
+  activePageTitle = 'Dashboard';
+  Pages = [
     {
-        libelle: ''
+      title: 'Dashboard',
+      url: '',
+      icon: 'albums'
     },
     {
-        email: ''
+      title: 'Login',
+      url: '/login',
+      icon: 'person'
+    },
+    {
+      title: 'Register',
+      url: '/register',
+      icon: 'person'
     }
-];
-  constructor(private tokenStorageService: TokenStorageService) { }
-
-  ngOnInit(): void {
-   
+  ];
+  constructor(
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+  ) {
+    this.initializeApp();
   }
-
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  }
 }

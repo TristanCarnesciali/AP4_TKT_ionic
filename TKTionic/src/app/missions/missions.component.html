@@ -1,22 +1,39 @@
-<table>
-    <tr>
-        <th>Libelle</th>
-        <th>Description</th>
-        <th>Commentaires</th>
-        <th>Enclos</th>
-        <th>Animal</th>
-    </tr>
-    <tr *ngFor="let item of missionData">
-        <td>{{item.libelle}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.commentaire}}</td>
-        <td *ngIf="item.idEnclos === 1">Enclos à tigre</td>
-        <td *ngIf="item.idEnclos === null">NULL</td>
-        <td *ngIf="item.idEtat === 1">Terminé</td>
-        <td *ngIf="item.idEtat === 0">En cours</td>
-    </tr>
-</table>
+<!-- <div id="bg"></div>
 
+<body>
+    <table>
+        <tr>
+            <th>Libelle</th>
+            <th>Animal</th>
+            <th>Enclos</th>
+        </tr>
+
+        <tr *ngFor="let item of missionData">
+            <td *ngIf="item.idUser == 1">{{item.libelle}}</td>
+            <td *ngIf="item.idUser == 1">{{item.idAnimal}}</td>
+            <td *ngIf="item.idUser == 1">{{item.idEnclos}}</td>
+        </tr>
+
+    </table>
+</body> -->
+
+<!-- <div class="X"> -->
+<div class="wrapper">
+    <ul class="SG">
+        <li class="sgLi">
+            <div class="box" *ngFor="let item of missionData">
+                <h3>Mission n° {{item.id}}</h3>
+                <ul class="df">
+                    <li>{{item.libelle}}</li>
+                    <li>{{item.description}}</li>
+                    <li>{{item.commentaire}}</li>
+
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- </div> -->
 
 
 

@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'missions', component: MissionsComponent },
   {
     path: '',
-    redirectTo: 'missions',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
 ];
