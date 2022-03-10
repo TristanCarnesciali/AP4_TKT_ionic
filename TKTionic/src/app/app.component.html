@@ -3,11 +3,10 @@
         <ion-menu contentId="main-content" type="overlay">
             <ion-content>
                 <ion-list id="inbox-list">
-                    <ion-list-header>Hello! John</ion-list-header>
-                    <ion-note>johndoe@gmail.com</ion-note>
+                    <ion-list-header>Menu</ion-list-header>
                     <ion-menu-toggle auto-hide="false" *ngFor="let pages of Pages; let i = index">
-                        <ion-item>
-                            <ion-icon slot="start" [ios]="pages.icon + '-outline'" [md]="pages.icon + '-sharp'"></ion-icon>
+                        <ion-item [routerLink]="[pages.url]">
+                            <ion-icon slot="start" [md]="pages.icon"></ion-icon>
                             <ion-label>{{ pages.title }}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>

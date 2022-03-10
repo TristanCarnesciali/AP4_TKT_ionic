@@ -11,21 +11,32 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 })
 
 export class AppComponent {
-  activePageTitle = 'Dashboard';
+  
+  activePageTitle = 'Menu';
   Pages = [
     {
-      title: 'Dashboard',
-      url: '',
-      icon: 'albums'
+      title: 'Missions',
+      url: '/missions',
+      icon: 'checkbox-outline'
     },
     {
-      title: 'Login',
-      url: '/login',
-      icon: 'person'
+      title: 'Encyclopédie',
+      url: '/encyclopedie',
+      icon: 'book-outline'
     },
     {
-      title: 'Register',
-      url: '/register',
+      title: 'Animaux',
+      url: '/animaux',
+      icon: 'paw-outline'
+    },
+    {
+      title: 'Alertes',
+      url: '/alertes',
+      icon: 'alert'
+    },
+    {
+      title: 'Comptes',
+      url: '/comptes',
       icon: 'person'
     }
   ];
@@ -36,10 +47,15 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  buttonClick() {
+    console.log("JE SUIS LA")
   }
 }

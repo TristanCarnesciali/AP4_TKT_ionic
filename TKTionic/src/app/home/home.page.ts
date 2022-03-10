@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
       this.missionData = data.mission;
       console.log(this.missionData);
     })
-  }
+   }
 
   openFirst() {
     this.menu.enable(true, 'first');
