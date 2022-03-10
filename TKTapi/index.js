@@ -21,7 +21,6 @@ app.use(cors({
 }));
 
 app.use(express.json()); //on renvoit au format json
-
 app.use(express.urlencoded({ extended: true })); //pour récupérer les infos grâce au body
 
 app.use(user);
@@ -35,6 +34,14 @@ app.use(animal);
 app.use(avertissements);
 app.use(espece);
 app.use(sante);
+
+var logger = require("./logger").Logger;
+
+app.use(function timeLog(req, res, next) {
+    // this is an example of how you would call our new logging system to log an info message
+    logger.info("Test Message");
+    next();
+});
 
 //on ouvre le serveur en local
 app.listen(3000, () => console.log('Le serveur est ouvert : http://localhost:3000'));

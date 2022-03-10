@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../_services/token-storage.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
-import { Observable } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,18 +11,21 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class HomePage implements OnInit {
 
-  constructor() { }
+  missionData: any = [];
+  constructor(public authService: AuthService, private actRoute: ActivatedRoute, private menu: MenuController) {}
 
-  ngOnInit(): void {
-   
+  ngOnInit() {
+    const id = this.actRoute.snapshot.paramMap.get('id');
+
+    this.authService.getAll().subscribe((data: any)=>{
+      this.missionData = data.mission;
+      console.log(this.missionData);
+    })
+   }
+
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
   }
 
-  // getType(id: any) : Observable<any> {
-  //   return this.http.get<any>('http://localhost:3000/type/' + id).pipe(retry(1));
-  // }
-
-  // logout(): void {
-  //   this.tokenStorageService.signOut();
-  //   this.router.navigate(['/login'])
-  // }
 }

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { TokenStorageService } from './_services/token-storage.service';
+
+import { Platform } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +11,51 @@ import { TokenStorageService } from './_services/token-storage.service';
 })
 
 export class AppComponent {
-
-  missionList = [
+  
+  activePageTitle = 'Menu';
+  Pages = [
     {
-        libelle: ''
+      title: 'Missions',
+      url: '/missions',
+      icon: 'checkbox-outline'
     },
     {
-        email: ''
+      title: 'Encyclopédie',
+      url: '/encyclopedie',
+      icon: 'book-outline'
+    },
+    {
+      title: 'Animaux',
+      url: '/animaux',
+      icon: 'paw-outline'
+    },
+    {
+      title: 'Alertes',
+      url: '/alertes',
+      icon: 'alert'
+    },
+    {
+      title: 'Comptes',
+      url: '/comptes',
+      icon: 'person'
     }
-];
-  constructor(private tokenStorageService: TokenStorageService) { }
-
-  ngOnInit(): void {
-   
+  ];
+  constructor(
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+  ) {
+    this.initializeApp();
+  }
+  
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
   }
 
+  buttonClick() {
+    console.log("JE SUIS LA")
+  }
 }
