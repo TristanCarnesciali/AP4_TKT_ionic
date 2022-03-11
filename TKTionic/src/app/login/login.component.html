@@ -1,0 +1,16 @@
+<body>
+    <div id="bg"></div>
+
+    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <input type="text" placeholder="Nom d'utilisateur" class="form-control" name="username" [(ngModel)]="form.username" required #username="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <input type="password" placeholder="Mot de passe" class="form-control" name="password" [(ngModel)]="form.password" required minlength="4" #password="ngModel" />
+            <div class="form-group">
+                <button class="btn" type="submit">Se connecter</button>
+            </div>
+        </div>
+    </form>
+</body>
