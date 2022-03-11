@@ -10,5 +10,10 @@
 </ion-header>
 
 <ion-content>
-
+    <ion-card *ngFor="let E of especes;" (click)="RedirectToUnique(E.id)">
+        <img src="../../assets/encyclopedie/{{E.image}}"/>
+        <ion-card-header>
+            <ion-card-title style="text-align: center;">{{E.nom}}</ion-card-title>
+        </ion-card-header>
+    </ion-card>
 </ion-content>

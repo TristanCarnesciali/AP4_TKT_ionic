@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Détails animal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let E of espece">
+    <img src="../../assets/encyclopedie/{{E.image}}"/>
+    <ion-text color="black">
+      <h1 style="text-align: center;">{{E.nom}}</h1>
+      {{E.description}}
+    </ion-text>
+  </div>
+</ion-content>

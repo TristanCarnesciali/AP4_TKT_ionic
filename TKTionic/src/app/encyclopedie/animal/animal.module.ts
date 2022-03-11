@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EncyclopediePageRoutingModule } from './encyclopedie-routing.module';
+import { AnimalPageRoutingModule } from './animal-routing.module';
 
-import { EncyclopediePage } from './encyclopedie.page';
+import { AnimalPage } from './animal.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EncyclopediePageRoutingModule
+    AnimalPageRoutingModule
   ],
-  declarations: [EncyclopediePage]
+  declarations: [AnimalPage]
 })
-export class EncyclopediePageModule {}
+export class AnimalPageModule {}
