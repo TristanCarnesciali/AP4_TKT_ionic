@@ -5,7 +5,7 @@ exports.findAll = async(req, res, next) => {
     try {
         //on stock le resultat de la requête
         const [rows] = await conn.execute(
-            "SELECT * FROM animal", [req.body]
+            "SELECT * FROM animal INNER JOIN espece on animal.idEspece=espece.id ", [req.body]
         );
         if (rows.length > 0) {
             return res.json({

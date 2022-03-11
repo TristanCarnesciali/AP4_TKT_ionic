@@ -26,9 +26,19 @@ export class AuthService {
     }, this.httpOptions);
   }
 
-  getAll() : Observable<any>{
+  getAllMissions() : Observable<any>{
     return this.http.get<any>(this.apiURL + '/missions').pipe(
       catchError(this.errorHandler))
+  }
+
+  createUser(username: string, email: string, password: string, idRole: number) : Observable<any> {
+    return this.http.post<any>(this.apiURL + '/register', {
+      username, email, password, idRole
+    }).pipe(catchError(this.errorHandler))
+  }
+
+  getAllAnimals(): Observable<any> {
+    return this.http.get<any>(this.apiURL + '/animaux').pipe(catchError(this.errorHandler))
   }
 
   errorHandler(error:any) {

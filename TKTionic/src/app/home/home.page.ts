@@ -11,21 +11,9 @@ import { MenuController } from '@ionic/angular';
 
 export class HomePage implements OnInit {
 
-  missionData: any = [];
-  constructor(public authService: AuthService, private actRoute: ActivatedRoute, private menu: MenuController) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
-    const id = this.actRoute.snapshot.paramMap.get('id');
-
-    this.authService.getAll().subscribe((data: any)=>{
-      this.missionData = data.mission;
-      console.log(this.missionData);
-    })
-   }
-
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
   }
 
 }
