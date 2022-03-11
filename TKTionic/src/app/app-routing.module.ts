@@ -33,6 +33,7 @@ const routes: Routes = [
     path: 'comptes',
     loadChildren: () => import('./comptes/comptes.module').then( m => m.ComptesPageModule)
   },
+
 ];
 
 @NgModule({

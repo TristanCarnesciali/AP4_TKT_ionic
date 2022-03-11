@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>missionid</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div *ngFor="let mission of missionData">*
+  <h1>numero de la mission</h1><h3>{{mission.id}}</h3>
+  <h1>nom de la mission :</h1> <h3>{{mission.libelle}}</h3>
+  <h1>nom de l'animal :</h1> <h3>{{mission.nomAnimal}}</h3>
+  <h1>description : </h1><h3>{{mission.description}}</h3>
+  <h1>commentaire :</h1><h3>{{mission.commentaire}}</h3>
+</div>
+
+</ion-content>

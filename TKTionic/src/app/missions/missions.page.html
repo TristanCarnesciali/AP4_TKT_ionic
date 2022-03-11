@@ -8,3 +8,20 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
+<ion-content fullscreen>
+    <ion-list>
+      <ion-list-header>Toute les missions </ion-list-header>
+      <div *ngFor="let missions of MissionData; let index = index;" >
+        <ion-item (click)="redirectid(missions.id)">
+            <ion-avatar slot="start">
+            <img src="https://via.placeholder.com/150" />
+            </ion-avatar>
+            <ion-label>
+            <h2>{{missions.libelle}}</h2>
+            <h3>{{missions.enclos}}</h3>
+            <p>{{missions.description}}</p>
+            </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+</ion-content>

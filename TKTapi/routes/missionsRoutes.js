@@ -1,12 +1,14 @@
 const router = require('express').Router();
 
 //on appelle le controllers
-const { findAll, create, findOne, update, drop } = require('../controllers/missionsController');
+const { findAll, findAllCompl, create, findOne, findOneCompl, update, drop } = require('../controllers/missionsController');
 
 //on défini les routes
-router.get('/missions', findAll);
+router.get('/missionsid', findAll);
+router.get('/missions', findAllCompl);
 router.post('/mission', create);
-router.get('/mission/:id', findOne);
+router.get('/missionid/:id', findOne);
+router.get('/mission/:id', findOneCompl);
 router.put('/mission/:id', update);
 router.delete('/mission/:id', drop);
 
