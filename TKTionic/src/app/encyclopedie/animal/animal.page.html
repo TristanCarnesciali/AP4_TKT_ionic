@@ -1,15 +1,32 @@
 <ion-header>
   <ion-toolbar>
+    <ion-button (click)="Retour()" expand="block" fill="clear" shape="round" style="float: left;">
+      Retour
+    </ion-button>
     <ion-title>Détails animal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let E of espece">
-    <img src="../../assets/encyclopedie/{{E.image}}"/>
+  <div >
+    <img src="../../../assets/encyclopedie/{{espece.image}}"/>
     <ion-text color="black">
-      <h1 style="text-align: center;">{{E.nom}}</h1>
-      {{E.description}}
+      <h1 style="text-align: center;">{{espece.nom}}</h1>
+      <p style="text-align: justify; margin-right: 5%; margin-left: 5%;">{{espece.description}}</p>
     </ion-text>
+    <ion-list>
+      <ion-item>
+        <ion-label>Taille : {{espece.taille}}cm</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Poids : Entre {{espece.poidsMin}}kg et {{espece.poidsMax}}kg</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Regime : {{regime}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <div>
+
+    </div>
   </div>
 </ion-content>
