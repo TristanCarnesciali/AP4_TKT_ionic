@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AnimalsPage
+  },
+  {
+    path: 'edit-animal',
+    loadChildren: () => import('./edit-animal/edit-animal.module').then( m => m.EditAnimalPageModule)
   }
 ];
 

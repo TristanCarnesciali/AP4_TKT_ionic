@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>edit_animal</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="ionicForm" (ngSubmit)="modifierAnimal()" novalidate>
+        <ion-item lines="full">
+            <ion-label position="floating">Etat</ion-label>
+            <ion-input formControlName="etat" type="text" required></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Animal</ion-label>
+            <ion-input formControlName="idAnimal" type="text" required></ion-input>
+        </ion-item>
+        <ion-row>
+            <ion-col>
+                <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>

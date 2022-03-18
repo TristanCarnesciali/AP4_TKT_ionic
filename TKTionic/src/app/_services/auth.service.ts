@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,12 @@ export class AuthService {
     })
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private actRoute: ActivatedRoute) { }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(this.apiURL + '/login', {
       username,
-      password
+      password,
     }, this.httpOptions);
   }
 
@@ -39,6 +40,21 @@ export class AuthService {
 
   getAllAnimals(): Observable<any> {
     return this.http.get<any>(this.apiURL + '/animaux').pipe(catchError(this.errorHandler))
+  }
+
+  getAnimal(id: any): Observable<any> {
+    return this.http.get<any>('http://localhost:3000/animal/' + id)
+      .pipe();
+  }
+
+  updateAnimalSante(id: any, etat: any, animal: any): Observable<any> {
+    return this.http.put<any>('http://localhost:3000/animal-sante/' + id, etat, animal)
+      .pipe();
+  }
+
+  getSanteAnimal(id: any): Observable<any> {
+    return this.http.get<any>('http://localhost:3000/animal-sante/' + id)
+      .pipe();
   }
 
   errorHandler(error:any) {

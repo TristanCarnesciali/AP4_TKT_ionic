@@ -19,8 +19,8 @@ exports.findAll = async(req, res, next) => {
 
 exports.create = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('INSERT INTO espece SET nom=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=?', [
-            req.body.nom,
+        const [rows] = await conn.execute('INSERT INTO espece SET libelle=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=?', [
+            req.body.libelle,
             req.body.image,
             req.body.description,
             req.body.taille,
@@ -55,8 +55,8 @@ exports.findOne = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('UPDATE `espece` SET nom=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=? WHERE id=?', [
-            req.body.nom,
+        const [rows] = await conn.execute('UPDATE `espece` SET libelle=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=? WHERE id=?', [
+            req.body.libelle,
             req.body.image,
             req.body.description,
             req.body.taille,

@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   username?: string;
+  toto = "";
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
       const user = this.tokenStorage.getUser();
       this.roles = user.roles;
       this.username = user.username;
+      this.toto = this.tokenStorage.getUser();
     }
   }
 

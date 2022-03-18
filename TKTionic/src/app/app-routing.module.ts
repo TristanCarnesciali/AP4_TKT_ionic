@@ -30,8 +30,8 @@ const routes: Routes = [
     loadChildren: () => import('./alertes/alertes.module').then( m => m.AlertesPageModule)
   },
   {
-    path: 'comptes',
-    loadChildren: () => import('./comptes/comptes.module').then( m => m.ComptesPageModule)
+    path: 'edit-animal/:id',
+    loadChildren: () => import('./animals/edit-animal/edit-animal.module').then( m => m.EditAnimalPageModule)
   },
 ];
 

@@ -13,11 +13,12 @@
     <ion-card *ngFor="let item of dataAnimals">
         <ion-img [src]="item.image"></ion-img>
         <ion-card-header>
-            <ion-card-subtitle>{{item.nom}}</ion-card-subtitle>
+            <ion-card-subtitle style="color:rgb(83, 66, 66);">{{item.libelle}} - {{item.nom}}</ion-card-subtitle>
             <ion-card-title>Poids min-max : {{item.poidsMin}}kg - {{item.poidsMax}}kg</ion-card-title>
         </ion-card-header>
         <ion-card-content>
             {{item.description.substring(0, 200)}}
         </ion-card-content>
+        <ion-button [routerLink]="['/edit-animal/', item.id]" color="medium">Modifier</ion-button>
     </ion-card>
 </ion-content>

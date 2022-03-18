@@ -15,6 +15,7 @@ exports.findAll = async(req, res, next) => {
     } catch (err) {
         next(err);
     }
+
 };
 
 exports.create = async(req, res, next) => {
