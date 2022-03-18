@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-encyclopedie',
@@ -9,8 +10,12 @@ import { Router } from '@angular/router';
 export class EncyclopediePage implements OnInit {
 
   especes;
+  form: any = {
+    name: null,
+    description: null
+  };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private formBuilder: FormBuilder) {}
 
   /**
    * Redirige vers la page encyclopedie/animal avec l'id de l'animal en query
@@ -29,5 +34,11 @@ export class EncyclopediePage implements OnInit {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  submitForm() {
+    const { name, description } = this.form;
+    console.log(name);
+    console.log(description)
   }
 }

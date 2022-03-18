@@ -10,10 +10,30 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let E of especes;" (click)="RedirectToUnique(E.id)">
-        <img src="../../assets/encyclopedie/{{E.image}}"/>
-        <ion-card-header>
-            <ion-card-title style="text-align: center;">{{E.nom}}</ion-card-title>
-        </ion-card-header>
-    </ion-card>
+    <ion-grid>
+        <ion-row>
+          <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let E of especes;">
+            <ion-card (click)="RedirectToUnique(E.id)">
+                <img src="../../assets/encyclopedie/{{E.image}}.png"/>
+                <ion-card-header>
+                    <ion-card-title style="text-align: center; font-size: 150%">{{E.nom}}</ion-card-title>
+                </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <form name="form" (ngSubmit)="f.form.valid && submitForm()" #f="ngForm" novalidate>
+        <div class="form-group">
+        <ion-item lines="full">
+            <ion-label position="floating">Nom</ion-label>
+            <ion-input type="text" placeholder="Nom" class="form-control" name="name" [(ngModel)]="form.name" required #username="ngModel"></ion-input>
+        </ion-item> 
+        <ion-item lines="full">
+            <ion-label position="floating">Description</ion-label>
+            <ion-input type="text" placeholder="Description" class="form-control" name="description" [(ngModel)]="form.description" required #username="ngModel"></ion-input>
+        </ion-item>
+            <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        </div>
+    </form>
 </ion-content>

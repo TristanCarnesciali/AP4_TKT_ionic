@@ -17,24 +17,32 @@ export class AnimalPage {
     "taille": "",
     "poidsMin": "",
     "poidsMax": "",
+    "gestation": "",
     "idType": "",
     "idContinent": ""
-  }; // Template for json
-  regime: String;
+  }; // Template pour le json (nécessaire pour accéder aux données depuis l'HTML)
+
+  regime = 
+  {
+    "id": "",
+    "libelle": ""
+  };
+  continent = 
+  {
+    "id": "",
+    "libelle": ""
+  };
+
+  imageId: Number;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
-
-  ionViewDidLeave() {
-    // this.espece;
-  }
 
   ionViewWillEnter() {
     this.loadAnimal();
   }
 
   loadAnimal() {
-    let id;
-    let idType;
+    let id: Number;
 
     this.route.queryParams.subscribe(params => {
       id = params["id"]
@@ -43,17 +51,39 @@ export class AnimalPage {
     .then((resp) => resp.json())
     .then((data) => {
       this.espece = data.espece;
-      idType = data.espece.idType;
+      this.fetchType(data.espece.idType);
+      this.fetchContinent(data.espece.idContinent);
+      this.imageId = Math.floor((Math.random() * 6));
+      if (this.imageId > 5 || this.imageId <= 0)
+        this.imageId = 1;
     })
     .catch((error) => {
       console.log(error);
     });
-
-    this.fetchType();
   }
 
-  fetchType() {
-    fetch(`http://127.0.0.1:3000/type/1`).then((resp) => resp.json()).then((data) => {this.regime = data.libelle; console.log(data);});
+  /**
+   * Récupère un régime en fonction de son ID et le met dans la variable "regime"
+   * @param id L'ID du régime à récupérer
+   */
+  fetchType(id: Number) {
+    fetch(`http://127.0.0.1:3000/type/${id}}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      this.regime = data.type;
+    });
+  }
+
+  /**
+   * Récupère un régime en fonction de son ID et le met dans la variable "continent"
+   * @param id L'ID du continent à récupérer
+   */
+  fetchContinent(id: Number) {
+    fetch(`http://127.0.0.1:3000/continent/${id}}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      this.continent = data.continent;
+    });
   }
 
   Retour() {
