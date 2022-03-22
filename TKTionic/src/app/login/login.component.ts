@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  userdata;
+
   onSubmit(): void {
     const { username, password } = this.form;
+    this.getuserv2(username);
+    console.log(this.userdata);
     this.authService.login(username, password).subscribe({
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -41,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/missions'])
+        this.router.navigate(['/missions'],{queryParams:{id:this.userdata}})
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -50,6 +54,18 @@ export class LoginComponent implements OnInit {
     });
   }
   
+  getuserv2(username) {
+    fetch(`http://127.0.0.1:3000/getuserv2/${username}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+        this.userdata = data.user[0].id;
+
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
+
   reloadPage(): void {
     window.location.reload();
   }

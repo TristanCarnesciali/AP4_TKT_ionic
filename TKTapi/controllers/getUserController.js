@@ -32,3 +32,21 @@ exports.getUser = async(req, res, next) => {
         next(err);
     }
 }
+
+exports.getUserv2 = async(req, res, next) => {
+    try {
+        //on stock le resultat de la requête
+        const [rows] = await conn.execute(
+            "SELECT id, username FROM user WHERE username = ?", [req.params.username]
+        );
+        if (rows.length > 0) {
+            return res.json({
+                user: rows
+            })
+        }
+    } catch (err) {
+        next(err);
+    }
+
+
+};

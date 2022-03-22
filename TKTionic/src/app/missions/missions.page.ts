@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,22 +9,29 @@ import { Router } from '@angular/router';
 })
 export class MissionsPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { 
+    this.route.paramMap.subscribe(
+      (data) => {
+
+      }
+    )
+  }
 
   ngOnInit() {
     this.loadMission();
+    console.log(this.userId);
   }
   MissionData;
 
-
-
+  userId = this.route.snapshot.queryParams.id;
+  
 
   loadMission(){
-    fetch('http://127.0.0.1:3000/missions')
+    fetch(`http://127.0.0.1:3000/missions/${this.userId}`)
     .then((resp) => resp.json())
     .then((data) => {
       this.MissionData = data.mission;
-      console.log(this.MissionData); 
+      console.log(this.MissionData);
     })
     .catch(function(error) {
       console.log(error);

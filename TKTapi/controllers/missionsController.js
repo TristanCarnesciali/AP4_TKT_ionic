@@ -21,7 +21,7 @@ exports.findAllCompl = async(req, res, next) => {
     try {
         //on stock le resultat de la requête
         const [rows] = await conn.execute(
-            "SELECT mission.id, mission.libelle, description, complete, commentaire, enclos.libelle as enclos, animal.nom as nomAnimal, user.username, etatmission.libelle as etat, date from mission INNER join enclos on enclos.id = idEnclos inner join animal on animal.id = idAnimal INNER join user on user.id = idUser inner join etatmission on etatmission.id = idEtat", [req.body]
+            "SELECT mission.id, mission.libelle, description, complete, idUser, commentaire, enclos.libelle as enclos, animal.nom as nomAnimal, etatmission.libelle as etat, date from mission INNER join enclos on enclos.id = idEnclos inner join animal on animal.id = idAnimal inner join etatmission on etatmission.id = idEtat", [req.body]
         );
         if (rows.length > 0) {
             return res.json({
@@ -70,9 +70,26 @@ exports.findOne = async(req, res, next) => {
     }
 }
 
+
+
+exports.findAllComplOrNull = async(req, res, next) => {
+    try {
+        const [rows] = await conn.execute("SELECT mission.id, mission.libelle, description, complete, commentaire, idUser, enclos.libelle as enclos, animal.nom as nomAnimal, etatmission.libelle as etat, date from mission INNER join enclos on enclos.id = idEnclos inner join animal on animal.id = idAnimal inner join etatmission on etatmission.id = idEtat WHERE mission.idUser = ? or mission.idUser = 0", [
+            req.params.id
+        ]);
+        if (rows.length > 0) {
+            return res.json({
+                mission: rows
+            })
+        }
+    } catch (err) {
+        next(err);
+    }
+};
+
 exports.findOneCompl = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute("SELECT mission.id, mission.libelle, description, complete, commentaire, enclos.libelle as enclos, animal.nom as nomAnimal, user.username, etatmission.libelle as etat, date from mission INNER join enclos on enclos.id = idEnclos inner join animal on animal.id = idAnimal INNER join user on user.id = idUser inner join etatmission on etatmission.id = idEtat WHERE mission.id = ?", [
+        const [rows] = await conn.execute("SELECT mission.id, mission.libelle, description, complete, commentaire, enclos.libelle as enclos, animal.nom as nomAnimal, etatmission.libelle as etat, date from mission INNER join enclos on enclos.id = idEnclos inner join animal on animal.id = idAnimal inner join etatmission on etatmission.id = idEtat WHERE mission.id = ?", [
             req.params.id
         ]);
         if (rows.length > 0) {

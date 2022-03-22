@@ -1,16 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>missionid</ion-title>
-  </ion-toolbar>
-</ion-header>
+<body>
+  <ion-app>
+    <ion-header translucent>
+      <ion-toolbar color="secondary">
+        <ion-title>
+            description mission
+        </ion-title>
+        <ion-button (click)="redirect()" color="primary" id="right">Retour</ion-button>
+      </ion-toolbar>
+    </ion-header>
 
-<ion-content>
-<div *ngFor="let mission of missionData">*
-  <h1>numero de la mission</h1><h3>{{mission.id}}</h3>
-  <h1>nom de la mission :</h1> <h3>{{mission.libelle}}</h3>
-  <h1>nom de l'animal :</h1> <h3>{{mission.nomAnimal}}</h3>
-  <h1>description : </h1><h3>{{mission.description}}</h3>
-  <h1>commentaire :</h1><h3>{{mission.commentaire}}</h3>
-</div>
+    <ion-content fullscreen>
+      <ion-item>
+        <div *ngFor="let mission of missionData">
+          <ion-list-header>numero de la mission:</ion-list-header>
+          <ion-item>
+            <ion-label>{{mission.id}}</ion-label>
+          </ion-item>
 
-</ion-content>
+          <ion-list-header>nom de la mission :</ion-list-header>
+            <ion-item>
+              <ion-label>{{mission.libelle}}</ion-label>
+          </ion-item>
+
+          <ion-list-header>nom de l'animal :</ion-list-header>
+            <ion-item>
+              <ion-label>{{mission.nomAnimal}}</ion-label>
+          </ion-item>
+
+          <ion-list-header>description : </ion-list-header>
+            <ion-item>
+              <ion-label>{{mission.description}}</ion-label>
+          </ion-item>
+
+          <ion-list-header>commentaire :</ion-list-header>
+            <ion-item>
+              <ion-label>{{mission.commentaire}}</ion-label>
+          </ion-item>
+
+        </div>
+      </ion-item>
+    </ion-content>
+  </ion-app>
+</body>
