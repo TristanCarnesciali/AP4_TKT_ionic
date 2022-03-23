@@ -1,4 +1,5 @@
 const conn = require('../dbConnexion').promise();
+const url = require("url");
 
 // trouver toute les mission de la bdd
 exports.findAll = async(req, res, next) => {
@@ -85,6 +86,18 @@ exports.drop = async(req, res, next) => {
                 message: "The espece has been successfully deleted.",
             });
         }
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.filter = async(req, res, next) => {
+    try {
+        const query = url.parse(req.url, true).query;
+        const [rows] = await conn.execute(`SELECT * FROM espece WHERE UPPER(nom) LIKE UPPER("%${query.nom}%") AND UPPER(description) LIKE UPPER("%${query.desc}%") AND idType LIKE "%${query.regime}%"`);
+        return res.json({
+            espece: rows
+        })
     } catch (err) {
         next(err);
     }
