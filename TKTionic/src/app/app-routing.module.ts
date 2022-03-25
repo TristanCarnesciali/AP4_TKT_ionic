@@ -32,7 +32,11 @@ const routes: Routes = [
   {
     path: 'comptes',
     loadChildren: () => import('./comptes/comptes.module').then( m => m.ComptesPageModule)
+  },  {
+    path: 'alertes-admin',
+    loadChildren: () => import('./alertes-admin/alertes-admin.module').then( m => m.AlertesAdminPageModule)
   },
+
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-encyclopedie',
@@ -9,8 +9,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class EncyclopediePage implements OnInit {
 
-  especes;
-  regimes;
+  especes: any;
+  regimes: any;
   form: any = {
     name: null,
     description: null
@@ -68,7 +68,13 @@ export class EncyclopediePage implements OnInit {
    * Appelé quand le radio bouton du filtre est changé, update le champ regime
    * @param event L'event associé au changement
    */
-  radioChange(event) {
+  radioChange(event: any) {
     this.regime = event.detail;
+  }
+
+  displayFiltre() {
+    let div: HTMLElement = document.getElementById("filterForm");
+    console.log(div);
+    div.setAttribute("style", "opacity: 100%;");
   }
 }
