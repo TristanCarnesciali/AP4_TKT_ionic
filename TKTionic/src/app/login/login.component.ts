@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { Router } from '@angular/router';
+import { AppModule } from '../app.module';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +23,10 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   username?: string;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
+  constructor(private authService: AuthService, private storage: Storage, private tokenStorage: TokenStorageService, private router: Router, private AppModule: AppModule) { }
 
   ngOnInit(): void {
+
     this.isLoggedIn = !!this.tokenStorage.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenStorage.getUser();
@@ -34,10 +37,11 @@ export class LoginComponent implements OnInit {
 
   userdata;
 
-  onSubmit(): void {
+  
+
+  async onSubmit(){
     const { username, password } = this.form;
     this.getuserv2(username);
-    console.log(this.userdata);
     this.authService.login(username, password).subscribe({
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -45,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/missions'],{queryParams:{id:this.userdata}})
+        this.router.navigate(['/missions'])
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -59,14 +63,21 @@ export class LoginComponent implements OnInit {
     .then((resp) => resp.json())
     .then((data) => {
         this.userdata = data.user[0].id;
-
+        this.setValue(this.userdata);
       })
       .catch(function(error) {
         console.log(error);
       });
     }
+  
+
+  setValue(id){
+    this.storage.set("id", id)
+  }
+
 
   reloadPage(): void {
     window.location.reload();
   }
+
 }

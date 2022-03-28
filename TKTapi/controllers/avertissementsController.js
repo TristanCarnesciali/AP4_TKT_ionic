@@ -19,9 +19,10 @@ exports.findAll = async(req, res, next) => {
 
 exports.create = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('INSERT INTO avertissements SET libelle=?, idNiveau=?', [
+        const [rows] = await conn.execute('INSERT INTO avertissements SET libelle=?, idNiveau=?, description=?', [
             req.body.libelle,
             req.body.idNiveau,
+            req.body.description
         ]);
         if (rows.affectedRows === 1) {
             return res.status(201).json({

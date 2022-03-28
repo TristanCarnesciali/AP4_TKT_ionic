@@ -11,9 +11,9 @@
 <ion-content fullscreen>
     <ion-list>
       <ion-list-header>Liste des missions </ion-list-header>
-      <ion-label>Mission non complete</ion-label>
+      <ion-label>Mission non complete assigner</ion-label>
       <div *ngFor="let missions of MissionData; let index = index;" >
-        <div *ngIf="missions.complete == 0">
+        <div *ngIf="missions.complete == 0 && missions.idUser > 0">
 
             <ion-item (click)="redirectid(missions.id)">
                 <ion-avatar slot="start">
@@ -23,10 +23,33 @@
                 <h2>{{missions.libelle}}</h2>
                 <h3>{{missions.enclos}}</h3>
                 <p>{{missions.description}}</p>
+                <div *ngIf="missions.idUser == 0">
+                    <ion-button color="primary">Affecter</ion-button>
+                </div>
                 </ion-label>
             </ion-item>
         </div>
     </div>
+    <ion-label>Mission non complete non assigner</ion-label>
+    <div *ngFor="let missions of MissionData; let index = index;" >
+      <div *ngIf="missions.complete == 0 && missions.idUser == 0">
+        ">
+
+          <ion-item (click)="redirectid(missions.id)">
+              <ion-avatar slot="start">
+              <img src="https://via.placeholder.com/150" />
+              </ion-avatar>
+              <ion-label>
+              <h2>{{missions.libelle}}</h2>
+              <h3>{{missions.enclos}}</h3>
+              <p>{{missions.description}}</p>
+              <div *ngIf="missions.idUser == 0">
+                  <ion-button color="primary">Affecter</ion-button>
+              </div>
+              </ion-label>
+          </ion-item>
+      </div>
+  </div>
     <ion-label>Mission complete</ion-label>
     <div *ngFor="let missions of MissionData; let index = index;" >
         <div *ngIf="missions.complete == 1">

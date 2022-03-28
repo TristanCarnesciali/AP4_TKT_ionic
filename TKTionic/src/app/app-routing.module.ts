@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { AppModule } from './app.module';
+
 
 const routes: Routes = [
   {
@@ -10,11 +12,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'missions',
+    path: `missions`,
     loadChildren: () => import('./missions/missions.module').then( m => m.MissionsPageModule)
   },
   {
@@ -42,4 +44,16 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(
+    private AppModule: AppModule,
+  ) {}
+  
+  userid(){
+    let user_id = this.AppModule.idUser;
+    console.log(user_id);
+    return user_id;
+  }
+  
+ }
+

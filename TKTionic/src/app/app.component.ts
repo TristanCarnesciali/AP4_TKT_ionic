@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,13 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 })
 
 export class AppComponent {
+
   
   activePageTitle = 'Menu';
   Pages = [
     {
       title: 'Missions',
-      url: '/missions',
+      url: `/missions`,
       icon: 'checkbox-outline'
     },
     {
@@ -44,8 +46,10 @@ export class AppComponent {
     private platform: Platform,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
+    private storage: Storage
   ) {
     this.initializeApp();
+    this.ngOnInit();
   }
   
   initializeApp() {
@@ -55,7 +59,17 @@ export class AppComponent {
     });
   }
 
+  
+  async ngOnInit() {
+    // If using a custom driver:
+    // await this.storage.defineDriver(MyCustomDriver)
+    await this.storage.create();
+  }
+
   buttonClick() {
     console.log("JE SUIS LA")
   }
+
+  
+
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-missions',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MissionsPage implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  constructor(private route: ActivatedRoute, private storage: Storage, private router: Router) { 
     this.route.paramMap.subscribe(
       (data) => {
 
@@ -17,17 +19,17 @@ export class MissionsPage implements OnInit {
     )
   }
 
-  ngOnInit() {
-    this.loadMission();
-    console.log(this.userId);
+  async ngOnInit() {
+    const userid = await this.storage.get("id");
+    this.loadMission(userid);
+    
   }
   MissionData;
 
-  userId = this.route.snapshot.queryParams.id;
-  
+ 
 
-  loadMission(){
-    fetch(`http://127.0.0.1:3000/missions/${this.userId}`)
+  loadMission(id){
+    fetch(`http://127.0.0.1:3000/missions/${id}`)
     .then((resp) => resp.json())
     .then((data) => {
       this.MissionData = data.mission;
