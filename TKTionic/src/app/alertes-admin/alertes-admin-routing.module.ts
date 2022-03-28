@@ -7,6 +7,18 @@ const routes: Routes = [
   {
     path: '',
     component: AlertesAdminPage
+  },
+  {
+    path: 'unique',
+    loadChildren: () => import('./unique/unique.module').then( m => m.UniquePageModule)
+  },
+  {
+    path: 'modifier',
+    loadChildren: () => import('./modifier/modifier.module').then( m => m.ModifierPageModule)
+  },
+  {
+    path: 'ajout',
+    loadChildren: () => import('./ajout/ajout.module').then( m => m.AjoutPageModule)
   }
 ];
 

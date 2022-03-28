@@ -4,13 +4,16 @@
           <ion-menu-button color="dark"></ion-menu-button>
       </ion-buttons>
       <ion-title>Alertes - Admin</ion-title>
+      <ion-button (click)="GotoAjout()" expand="block" fill="clear" shape="round" slot="end">
+        Ajouter
+      </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item *ngFor="let A of alertes" (click)="showDetail(a.id)">
+  <ion-item style="margin-top: 5%;" *ngFor="let A of alertes" (click)="showDetail(A.id)">
     <ion-avatar slot="start">
-      <img src="../../assets/alertes/niveau{{A.idNiveau}}.png" style="height: 110%;"/>
+      <img src="../../assets/alertes/niveau{{A.idNiveau}}.png" style="height: 100%;"/>
     </ion-avatar>
     <ion-label>
       {{A.libelle}}

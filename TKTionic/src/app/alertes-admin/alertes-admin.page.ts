@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-alertes-admin',
@@ -8,11 +8,18 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class AlertesAdminPage implements OnInit {
 
-  alertes;
+  alertes: any;
 
   constructor(private router: Router) { }
 
+  ionViewWillEnter() {
+    this.loadAvertissements();
+  }
   ngOnInit(): void {
+    this.loadAvertissements();
+  }
+
+  loadAvertissements() {
     fetch('http://127.0.0.1:3000/avertissements')
     .then((resp) => resp.json())
     .then((data) => {
@@ -22,6 +29,10 @@ export class AlertesAdminPage implements OnInit {
   }
 
   showDetail(id: Number) {
-    this.router.navigateByUrl(`/alertes-admin/detail?id=${id}`);
+    this.router.navigateByUrl(`/alertes-admin/unique?id=${id}`);
+  }
+
+  GotoAjout() {
+    this.router.navigateByUrl(`/alertes-admin/ajout`);
   }
 }
