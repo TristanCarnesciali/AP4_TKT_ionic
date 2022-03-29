@@ -5,11 +5,11 @@ exports.findAll = async(req, res, next) => {
     try {
         //on stock le resultat de la requête
         const [rows] = await conn.execute(
-            "SELECT * FROM sante", [req.body]
+            "SELECT * FROM etatsante", [req.body]
         );
         if (rows.length > 0) {
             return res.json({
-                sante: rows
+                continent: rows
             })
         }
     } catch (err) {
@@ -19,13 +19,12 @@ exports.findAll = async(req, res, next) => {
 
 exports.create = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('INSERT INTO sante SET etat=?, idAnimal=?', [
-            req.body.etat,
-            req.body.idAnimal,
+        const [rows] = await conn.execute('INSERT INTO etatsante SET libelle=?', [
+            req.body.libelle,
         ]);
         if (rows.affectedRows === 1) {
             return res.status(201).json({
-                message: "The sante has been successfully inserted.",
+                message: "The continent has been successfully inserted.",
             });
         }
     } catch (err) {
@@ -35,12 +34,12 @@ exports.create = async(req, res, next) => {
 
 exports.findOne = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute("SELECT * FROM sante WHERE id = ?", [
+        const [rows] = await conn.execute("SELECT * FROM continent WHERE id = ?", [
             req.params.id
         ]);
         if (rows.length > 0) {
             return res.json({
-                sante: rows[0]
+                mission: rows[0]
             })
         }
     } catch (err) {
@@ -50,15 +49,13 @@ exports.findOne = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('UPDATE `sante` SET etat=?, idAnimal=?, commentaire=? WHERE idAnimal=?', [
-            req.body.etat,
-            req.body.idAnimal,
-            req.body.commentaire,
+        const [rows] = await conn.execute('UPDATE `continent` SET libelle=? WHERE id=?', [
+            req.body.libelle,
             req.params.id
         ]);
         if (rows.affectedRows === 1) {
             return res.status(201).json({
-                message: "The sante has been successfully updated.",
+                message: "The continent has been successfully updated.",
             });
         }
     } catch (err) {
@@ -68,12 +65,12 @@ exports.update = async(req, res, next) => {
 
 exports.drop = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute("DELETE FROM sante WHERE id = ?", [
+        const [rows] = await conn.execute("DELETE FROM continent WHERE id = ?", [
             req.params.id
         ]);
         if (rows.affectedRows === 1) {
             return res.status(201).json({
-                message: "The sante has been successfully deleted.",
+                message: "The continent has been successfully deleted.",
             });
         }
     } catch (err) {

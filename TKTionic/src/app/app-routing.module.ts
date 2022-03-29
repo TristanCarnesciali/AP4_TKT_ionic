@@ -30,9 +30,13 @@ const routes: Routes = [
     loadChildren: () => import('./alertes/alertes.module').then( m => m.AlertesPageModule)
   },
   {
-    path: 'edit-animal/:id',
-    loadChildren: () => import('./animals/edit-animal/edit-animal.module').then( m => m.EditAnimalPageModule)
+    path: 'sante/:id',
+    loadChildren: () => import('./sante/sante.module').then( m => m.SantePageModule)
   },
+  {
+    path: 'comptes',
+    loadChildren: () => import('./comptes/comptes.module').then(m => m.ComptesPageModule)
+  }
 ];
 
 @NgModule({
