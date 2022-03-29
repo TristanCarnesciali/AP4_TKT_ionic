@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
+  
   form: any = {
     username: null,
     password: null
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   username?: string;
+  toto = "";
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
       const user = this.tokenStorage.getUser();
       this.roles = user.roles;
       this.username = user.username;
+      this.toto = this.tokenStorage.getUser();
     }
   }
 
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/missions'])
+        this.router.navigate(['/home'])
       },
       error: err => {
         this.errorMessage = err.error.message;

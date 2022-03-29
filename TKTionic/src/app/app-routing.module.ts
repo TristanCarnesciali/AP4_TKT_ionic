@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -30,9 +30,13 @@ const routes: Routes = [
     loadChildren: () => import('./alertes/alertes.module').then( m => m.AlertesPageModule)
   },
   {
-    path: 'comptes',
-    loadChildren: () => import('./comptes/comptes.module').then( m => m.ComptesPageModule)
+    path: 'sante/:id',
+    loadChildren: () => import('./sante/sante.module').then( m => m.SantePageModule)
   },
+  {
+    path: 'comptes',
+    loadChildren: () => import('./comptes/comptes.module').then(m => m.ComptesPageModule)
+  }
 ];
 
 @NgModule({

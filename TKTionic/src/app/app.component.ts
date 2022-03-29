@@ -54,8 +54,4 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
-  buttonClick() {
-    console.log("JE SUIS LA")
-  }
 }

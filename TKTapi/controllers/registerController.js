@@ -17,13 +17,16 @@ exports.register = async(req, res, next) => {
         //on hash le password avec la librarie bcrypt
         const hashPass = await bcrypt.hash(req.body.password, 12);
 
-        //on envoie dans la bdd les valeur du body
         const [rows] = await conn.execute('INSERT INTO `user`(`username`,`email`, `password`, `idRole`) VALUES(?,?,?,?)', [
             req.body.username,
             req.body.email,
             hashPass,
             req.body.idRole,
         ]);
+
+
+        //on envoie dans la bdd les valeur du body
+
 
         //l'opération s'est bien passé (1) on affiche un message
         if (rows.affectedRows === 1) {

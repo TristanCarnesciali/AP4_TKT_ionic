@@ -13,7 +13,7 @@ import { ComptesPage } from './comptes.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ComptesPageRoutingModule
+    ComptesPageRoutingModule,
   ],
   declarations: [ComptesPage]
 })
