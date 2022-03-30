@@ -37,9 +37,12 @@ export class LoginComponent implements OnInit {
       this.toto = this.tokenStorage.getUser();
     }
   }
+  ionViewWillLeave() {
+    window.location.reload();
+  }
 
   userdata;
-
+  roledata;
 
 
   async onSubmit() {
@@ -66,7 +69,9 @@ export class LoginComponent implements OnInit {
       .then((resp) => resp.json())
       .then((data) => {
         this.userdata = data.user[0].id;
-        this.setValue(this.userdata);
+        this.roledata = data.user[0].idRole;
+        this.setIdUser(this.userdata);
+        this.setUserRole(this.roledata);
       })
       .catch(function (error) {
         console.log(error);
@@ -74,10 +79,12 @@ export class LoginComponent implements OnInit {
   }
 
 
-  setValue(id) {
+  setIdUser(id) {
     this.storage.set("id", id)
   }
-
+  setUserRole(id){
+    this.storage.set("role", id)
+  }
 
   reloadPage(): void {
     window.location.reload();

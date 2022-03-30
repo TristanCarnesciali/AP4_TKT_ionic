@@ -19,7 +19,6 @@ export class AnimalsPage implements OnInit {
   ngOnInit() {
     this.getAllAnimals().subscribe((data: any) =>{
       this.dataAnimals = data.animal;
-      console.log(this.dataAnimals)
     })  
   }
 

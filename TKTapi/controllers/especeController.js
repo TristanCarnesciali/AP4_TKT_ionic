@@ -94,7 +94,7 @@ exports.drop = async(req, res, next) => {
 exports.filter = async(req, res, next) => {
     try {
         const query = url.parse(req.url, true).query;
-        const [rows] = await conn.execute(`SELECT * FROM espece WHERE UPPER(nom) LIKE UPPER("%${query.nom}%") AND UPPER(description) LIKE UPPER("%${query.desc}%") AND idType LIKE "%${query.regime}%"`);
+        const [rows] = await conn.execute(`SELECT * FROM espece WHERE UPPER(libelle) LIKE UPPER("%${query.nom}%") AND UPPER(description) LIKE UPPER("%${query.desc}%") AND idType LIKE "%${query.regime}%"`);
         return res.json({
             espece: rows
         })

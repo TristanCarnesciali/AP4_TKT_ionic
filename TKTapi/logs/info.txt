@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-Wed Mar 30 2022 14:22:51 GMT+0200 (heure d’été d’Europe centrale) : Test Message
-Wed Mar 30 2022 14:25:56 GMT+0200 (heure d’été d’Europe centrale) : L'utilisateur test s'est connecté
-Wed Mar 30 2022 14:42:43 GMT+0200 (heure d’été d’Europe centrale) : Test Message
-Wed Mar 30 2022 14:42:48 GMT+0200 (heure d’été d’Europe centrale) : Test Message
-Wed Mar 30 2022 14:42:49 GMT+0200 (heure d’été d’Europe centrale) : Test Message
-Wed Mar 30 2022 14:42:49 GMT+0200 (heure d’été d’Europe centrale) : Test Message
-=======
->>>>>>> Marvine
-=======
->>>>>>> Yohann
+Wed Mar 30 2022 16:48:32 GMT+0200 (heure d’été d’Europe centrale) : L'utilisateur test s'est connecté
+Wed Mar 30 2022 16:50:45 GMT+0200 (heure d’été d’Europe centrale) : L'utilisateur tristan s'est connecté
+Wed Mar 30 2022 16:54:26 GMT+0200 (heure d’été d’Europe centrale) : L'utilisateur tristan s'est connecté
+Wed Mar 30 2022 16:58:49 GMT+0200 (heure d’été d’Europe centrale) : L'utilisateur tristan s'est connecté
+Wed Mar 30 2022 16:59:58 GMT+0200 (heure d’été d’Europe centrale) : L'utilisateur test s'est connecté

@@ -15,7 +15,7 @@ export class AppComponent {
 
 
   activePageTitle = 'Menu';
-  Pages = [
+  PagesUser = [
     {
       title: 'Missions',
       url: `/missions`,
@@ -34,6 +34,20 @@ export class AppComponent {
     {
       title: 'Alertes',
       url: '/alertes',
+      icon: 'alert'
+    },
+
+  ];
+  PagesAdmin = [
+    {
+      title: 'Missions Admin',
+      url: `/missions-admin`,
+      icon: 'checkbox-outline'
+    },
+
+    {
+      title: 'Alertes Admin',
+      url: '/alertes-admin',
       icon: 'alert'
     },
     {
@@ -59,11 +73,16 @@ export class AppComponent {
     });
   }
 
+  ngOnDestroy() {
+    this.idRole = 0;
+  }
+  idRole = 0;
 
   async ngOnInit() {
     // If using a custom driver:
     // await this.storage.defineDriver(MyCustomDriver)
     await this.storage.create();
+    this.idRole = await await this.storage.get("role");
   }
 
   buttonClick() {

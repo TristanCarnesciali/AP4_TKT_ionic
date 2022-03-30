@@ -54,7 +54,6 @@ export class MissionidPage implements OnInit {
       .then((resp) => resp.json())
       .then((data) => {
         this.missionData.push(data.mission);
-        console.log(data.mission);
         this.missionUser.push(data.mission.idUser);
         this.missionLibelle.push(data.mission.libelle);
         this.missionDescription.push(data.mission.description);
@@ -73,7 +72,6 @@ export class MissionidPage implements OnInit {
     const userid = await this.storage.get("id");
     const libelle = this.missionLibelle.toString();
     const description = this.missionDescription.toString();
-    console.log(libelle, description)
     this.http
       .put(`http://127.0.0.1:3000/missionAss/${this.idmission}`, {idUser: userid, libelle: libelle, description: description})
       .subscribe({
@@ -88,7 +86,6 @@ export class MissionidPage implements OnInit {
   async onSubmitFin(){
     const libelle = this.missionLibelle.toString();
     const description = this.missionDescription.toString();
-    console.log(libelle, description)
     this.http
       .put(`http://127.0.0.1:3000/missionFin/${this.idmission}`, { libelle: libelle, description: description})
       .subscribe({
@@ -104,8 +101,6 @@ export class MissionidPage implements OnInit {
     const libelle = this.missionLibelle.toString();
     const description = this.missionDescription.toString();
     const { commentaire } = this.form;
-
-    console.log(libelle, description, commentaire);
     this.http
       .put(`http://127.0.0.1:3000/missionCom/${this.idmission}`, { commentaire: commentaire, libelle: libelle, description: description})
       .subscribe({

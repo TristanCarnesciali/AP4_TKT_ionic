@@ -97,7 +97,6 @@ export class UniquePage implements OnInit {
     .then((resp) => resp.json())
     .then((data) => {
       this.users = data.users;
-      console.log(this.users);
     }).catch((error) => {
       console.log(error);
     });
