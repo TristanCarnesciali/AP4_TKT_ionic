@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="Retour()" expand="block" fill="clear" shape="round" slot="start">
+      Retour
+    </ion-button>
+    <ion-title>Détails animal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+      <img src="../../../assets/encyclopedie/{{espece.image}}{{imageId}}.png"/>
+      <ion-text color="black">
+        <h1 style="text-align: center;">{{espece.nom}}</h1>
+        <p style="text-align: justify; margin-right: 5%; margin-left: 5%;">{{espece.description}}</p>
+      </ion-text>
+      <ion-list>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../../assets/encyclopedie/info_taille.png" style="height: 110%;"/>
+          </ion-avatar>
+          <ion-label>Taille : {{espece.taille}}cm</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../../assets/encyclopedie/info_poids.png" style="height: 110%;"/>
+          </ion-avatar>
+          <ion-label>Poids : Entre {{espece.poidsMin}}kg et {{espece.poidsMax}}kg</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../../assets/encyclopedie/info_gestation.png" style="height: 110%;"/>
+          </ion-avatar>
+          <ion-label>Gestation : {{espece.gestation}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="../../../assets/encyclopedie/info_regime{{regime.id}}.png" style="height: 110%;"/>
+          </ion-avatar>
+          <ion-label>Regime : {{regime.libelle}}</ion-label>
+        </ion-item>
+      </ion-list>
+      <img src="{{espece.localisationImage}}">
+      <div>
+
+      </div>
+    </div>
+</ion-content>

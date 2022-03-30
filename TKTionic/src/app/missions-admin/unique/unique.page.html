@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="Retour()" expand="block" fill="clear" shape="round" slot="start">
+      Retour
+    </ion-button>
+    <ion-title>Mission N°{{mission.id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-text color="black">
+      <ion-item>
+        <h1>{{mission.libelle}}</h1>
+        <ion-label *ngIf="mission.complete == 1" style="font-size: x-large; color: green;" slot="end">Terminé</ion-label>
+        <ion-label *ngIf="mission.idUser == null" style="font-size: x-large; color: red;" slot="end">Non assigné</ion-label>
+      </ion-item>
+      <br>
+      <ion-list-header>
+        Créée le : 
+      </ion-list-header>
+      <ion-item>
+        <ion-label>{{mission.date}}</ion-label>
+      </ion-item>
+      <ion-list-header>
+        Description : 
+      </ion-list-header>
+      <ion-item>
+        <ion-label><br>{{mission.description}}</ion-label>
+      </ion-item>
+      <div *ngIf="mission.commentaire != null">
+        <ion-list-header>
+          Commentaire : 
+        </ion-list-header>
+        <ion-item>
+          <ion-label>{{mission.commentaire}}</ion-label>
+        </ion-item>
+      </div>
+      <ion-list-header>
+        Concerne :
+      </ion-list-header>
+      <ion-item>
+        <ion-label *ngIf="enclos.id != null">l'enclos {{enclos.libelle}}</ion-label>
+        <ion-label *ngIf="animal.id != null">l'animal {{animal.nom}}</ion-label>
+      </ion-item>
+    </ion-text>
+    
+    <div *ngIf="mission.idUser == null">
+      <ion-item>
+        <ion-label>Assigner à : </ion-label>
+        <ion-select value="peperoni" multiple="true" placeholder="Select Pizza">
+          <ion-select-option *ngFor="let U of users" value="{{U.id}}">{{U.username}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+

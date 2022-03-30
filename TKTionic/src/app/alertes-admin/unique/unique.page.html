@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="Retour()" expand="block" fill="clear" shape="round" slot="start">
+      Retour
+    </ion-button>
+    <ion-title>Alerte N°{{id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-text color="black">
+      <ion-item>
+        <h1>{{alerte.libelle}}</h1>
+          <ion-avatar slot="end">
+            <img src="../../../assets/alertes/niveau{{niveau.id}}.png" style="height: 100%;"/>
+          </ion-avatar>
+      </ion-item>
+      <p style="text-align: justify; margin-right: 5%; margin-left: 5%; font-size: x-large;">{{alerte.description}}</p>
+    </ion-text>
+  </div>
+
+  <ion-button (click)="GotoEdit(alerte.id)" fill="clear" shape="round">
+    Modifier
+  </ion-button>
+  <ion-button (click)="Delete()" fill="clear" shape="round" style="float: right">
+    Supprimer
+  </ion-button>
+</ion-content>

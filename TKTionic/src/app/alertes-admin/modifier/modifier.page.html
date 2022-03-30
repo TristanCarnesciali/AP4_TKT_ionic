@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="Retour()" expand="block" fill="clear" shape="round" slot="start">
+      Retour
+    </ion-button>
+    <ion-title>Modification alerte N°{{id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form name="form" (ngSubmit)="submitForm() && f.form.valid" #f="ngForm" novalidate>
+  <ion-item>
+    <ion-label position="floating">Libellé</ion-label>
+    <ion-input value="{{alerte.libelle}}" type="text" placeholder="Nom" class="form-control" name="libelle" [(ngModel)]="form.libelle" required #username="ngModel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea placeholder="Description" class="form-control" name="description" [(ngModel)]="form.description" required #username="ngModel"></ion-textarea>
+  </ion-item>
+  <ion-item>
+      <ion-label>Niveau</ion-label>
+      <ion-list>
+          <ion-radio-group name="regime" allow-empty-selection="false" value="{{alerte.idNiveau}}" (ionChange)="radioChange($event)">
+              <ion-item>
+                  <ion-label>Peu important</ion-label>
+                  <ion-radio name="regime" value="1"></ion-radio>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Important</ion-label>
+                  <ion-radio name="regime" value="2"></ion-radio>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Très important</ion-label>
+                  <ion-radio name="regime" value="3"></ion-radio>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Urgent</ion-label>
+                  <ion-radio name="regime" value="4"></ion-radio>
+              </ion-item>
+          </ion-radio-group>
+      </ion-list>
+  </ion-item>
+  <ion-button type="submit" expand="block" fill="clear" shape="round">
+    Modifier
+  </ion-button>
+</form>
+</ion-content>
