@@ -17,4 +17,4 @@ import { MissionidPage } from './missionid.page';
   ],
   declarations: [MissionidPage]
 })
-export class MissionidPageModule {}
+export class MissionidPageModule { }

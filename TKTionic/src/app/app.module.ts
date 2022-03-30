@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { Platform } from '@ionic/angular';
@@ -16,12 +16,12 @@ import { IonicStorageModule } from '@ionic/storage-angular';
   declarations: [AppComponent, LoginComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, ReactiveFormsModule, HttpClientModule, FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, Platform, StatusBar, 
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Platform, StatusBar,
     SplashScreen,
-    { 
-      provide: RouteReuseStrategy, 
-      useClass: IonicRouteStrategy 
-    }],
+  {
+    provide: RouteReuseStrategy,
+    useClass: IonicRouteStrategy
+  }],
   bootstrap: [AppComponent],
 })
 

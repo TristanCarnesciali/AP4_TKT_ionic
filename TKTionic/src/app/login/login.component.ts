@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
 
   userdata;
 
-  
 
-  async onSubmit(){
+
+  async onSubmit() {
     const { username, password } = this.form;
     this.getuserv2(username);
     this.authService.login(username, password).subscribe({
@@ -57,21 +57,21 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  
+
   getuserv2(username) {
     fetch(`http://127.0.0.1:3000/getuserv2/${username}`)
-    .then((resp) => resp.json())
-    .then((data) => {
+      .then((resp) => resp.json())
+      .then((data) => {
         this.userdata = data.user[0].id;
         this.setValue(this.userdata);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
-    }
-  
+  }
 
-  setValue(id){
+
+  setValue(id) {
     this.storage.set("id", id)
   }
 

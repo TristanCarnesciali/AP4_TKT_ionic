@@ -124,6 +124,40 @@ exports.update = async(req, res, next) => {
     }
 }
 
+exports.updateidU = async(req, res, next) => {
+    try {
+        const [rows] = await conn.execute('UPDATE `mission` SET idUser=? WHERE id=? and libelle=? and description=? ', [
+            req.body.idUser,
+            req.params.id,
+            req.body.libelle,
+            req.body.description,
+        ]);
+        if (rows.affectedRows === 1) {
+            return res.status(201).json({
+                message: "The mission has been successfully updated.",
+            });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.updateMfin = async(req, res, next) => {
+    try {
+        const [rows] = await conn.execute('UPDATE `mission` SET complete=1 WHERE id=? and libelle=? and description=? ', [
+            req.params.id,
+            req.body.libelle,
+            req.body.description,
+        ]);
+        if (rows.affectedRows === 1) {
+            return res.status(201).json({
+                message: "The mission has been successfully updated.",
+            });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
 
 exports.drop = async(req, res, next) => {
     try {

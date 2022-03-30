@@ -7,7 +7,7 @@ import { AppModule } from './app.module';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   { path: 'login', component: LoginComponent },
   {
@@ -17,23 +17,23 @@ const routes: Routes = [
   },
   {
     path: `missions`,
-    loadChildren: () => import('./missions/missions.module').then( m => m.MissionsPageModule)
+    loadChildren: () => import('./missions/missions.module').then(m => m.MissionsPageModule)
   },
   {
     path: 'animaux',
-    loadChildren: () => import('./animals/animals.module').then( m => m.AnimalsPageModule)
+    loadChildren: () => import('./animals/animals.module').then(m => m.AnimalsPageModule)
   },
   {
     path: 'encyclopedie',
-    loadChildren: () => import('./encyclopedie/encyclopedie.module').then( m => m.EncyclopediePageModule)
+    loadChildren: () => import('./encyclopedie/encyclopedie.module').then(m => m.EncyclopediePageModule)
   },
   {
     path: 'alertes',
-    loadChildren: () => import('./alertes/alertes.module').then( m => m.AlertesPageModule)
+    loadChildren: () => import('./alertes/alertes.module').then(m => m.AlertesPageModule)
   },
   {
     path: 'comptes',
-    loadChildren: () => import('./comptes/comptes.module').then( m => m.ComptesPageModule)
+    loadChildren: () => import('./comptes/comptes.module').then(m => m.ComptesPageModule)
   },
 
 ];
@@ -47,13 +47,13 @@ const routes: Routes = [
 export class AppRoutingModule {
   constructor(
     private AppModule: AppModule,
-  ) {}
-  
-  userid(){
+  ) { }
+
+  userid() {
     let user_id = this.AppModule.idUser;
     console.log(user_id);
     return user_id;
   }
-  
- }
+
+}
 

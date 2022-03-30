@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
-import { AppModule } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
-
-
 
 
 @Component({
@@ -15,50 +12,78 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class MissionidPage implements OnInit {
 
-  constructor(private route: ActivatedRoute, private storage: Storage, private router: Router, private AppModule: AppModule, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private storage: Storage, private router: Router, private http: HttpClient) { }
+
+  idmission = this.route.snapshot.queryParams.id;
 
   ngOnInit() {
-    console.log(this.route.snapshot.queryParams.id);
-    this.loadMissionId(this.route.snapshot.queryParams.id);
-    
+    this.loadMissionId(this.idmission);
+
   }
-  missionId = this.route.snapshot.queryParams.id;
+  missionId = this.idmission;
   missionData = [];
   missionUser = [];
+  missionLibelle = [];
+  missionDescription = [];
+  missionComplete = [];
 
   ionViewDidLeave() {
     this.missionData = [];
+    this.missionUser = [];
+    this.missionId = 0;
+    this.missionLibelle = [];
+    this.missionDescription = [];
+    this.missionComplete = [];
   }
 
-  ionViewDidEnter() { 
+  ionViewDidEnter() {
     this.loadMissionId;
   }
 
 
   loadMissionId(missionId) {
     fetch(`http://127.0.0.1:3000/mission/${missionId}`)
-    .then((resp) => resp.json())
-    .then((data) => {
-      this.missionData.push(data.mission);
-      console.log(data.mission);
-      this.missionUser.push(data.mission.idUser);
-      console.log(data.mission.idUser);
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.missionData.push(data.mission);
+        console.log(data.mission);
+        this.missionUser.push(data.mission.idUser);
+        this.missionLibelle.push(data.mission.libelle);
+        this.missionDescription.push(data.mission.description);
+        this.missionComplete.push(data.mission.complete);
+        
 
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
-  async redirect(){
+  async redirect() {
     this.router.navigateByUrl(`missions`)
   }
 
-  onSubmit(): void {
+  async onSubmitAss(){
+    const userid = await this.storage.get("id");
+    const libelle = this.missionLibelle.toString();
+    const description = this.missionDescription.toString();
+    console.log(libelle, description)
     this.http
-        .post(`http://127.0.0.1:3000/avertissement`, {})
-        .subscribe({
-          next: (response) => console.log(response),
-          error: (error) => console.log(error),
-        });
+      .put(`http://127.0.0.1:3000/missionset/${this.idmission}`, {idUser: userid, libelle: libelle, description: description})
+      .subscribe({
+        next: (response) => console.log(response),
+        error: (error) => console.log(error),
+      });
+  }
+
+  async onSubmitFin(){
+    const libelle = this.missionLibelle.toString();
+    const description = this.missionDescription.toString();
+    console.log(libelle, description)
+    this.http
+      .put(`http://127.0.0.1:3000/missionFin/${this.idmission}`, { libelle: libelle, description: description})
+      .subscribe({
+        next: (response) => console.log(response),
+        error: (error) => console.log(error),
+      });
   }
 }

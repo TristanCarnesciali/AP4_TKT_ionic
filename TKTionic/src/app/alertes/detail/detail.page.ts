@@ -20,16 +20,16 @@ export class DetailPage implements OnInit {
 
   loaddetail(id: number) {
     fetch(`http://127.0.0.1:3000/avertissement/${id}`)
-    .then((resp) => resp.json())
-    .then((data) => {
-      this.avertDetail = data.avertissements;
-      console.log(this.avertDetail);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.avertDetail = data.avertissements;
+        console.log(this.avertDetail);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
-  redirect(){
+  redirect() {
     this.router.navigateByUrl(`alertes`)
   }
 }

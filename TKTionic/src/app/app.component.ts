@@ -13,7 +13,7 @@ import { Storage } from '@ionic/storage-angular';
 
 export class AppComponent {
 
-  
+
   activePageTitle = 'Menu';
   Pages = [
     {
@@ -51,7 +51,7 @@ export class AppComponent {
     this.initializeApp();
     this.ngOnInit();
   }
-  
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -59,7 +59,7 @@ export class AppComponent {
     });
   }
 
-  
+
   async ngOnInit() {
     // If using a custom driver:
     // await this.storage.defineDriver(MyCustomDriver)
@@ -70,6 +70,6 @@ export class AppComponent {
     console.log("JE SUIS LA")
   }
 
-  
+
 
 }

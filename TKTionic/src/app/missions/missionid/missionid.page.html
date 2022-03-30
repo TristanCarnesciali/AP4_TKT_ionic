@@ -3,7 +3,7 @@
     <ion-header translucent>
       <ion-toolbar color="secondary">
         <ion-title>
-            description mission
+          description mission
         </ion-title>
         <ion-button (click)="redirect()" color="primary" id="right">Retour</ion-button>
       </ion-toolbar>
@@ -17,28 +17,31 @@
             <ion-label>{{mission.id}}</ion-label>
           </ion-item>
 
-          <ion-list-header>nom de la mission :</ion-list-header>
-            <ion-item>
-              <ion-label>{{mission.libelle}}</ion-label>
+          <ion-list-header>nom de l'animal :</ion-list-header>
+          <ion-item>
+            <ion-label>{{mission.nomAnimal}}</ion-label>
           </ion-item>
 
-          <ion-list-header>nom de l'animal :</ion-list-header>
-            <ion-item>
-              <ion-label>{{mission.nomAnimal}}</ion-label>
+          <ion-list-header>nom de la mission :</ion-list-header>
+          <ion-item>
+            <ion-label>{{mission.libelle}}</ion-label>
           </ion-item>
 
           <ion-list-header>description : </ion-list-header>
-            <ion-item>
-              <ion-label>{{mission.description}}</ion-label>
+          <ion-item>
+            <ion-label>{{mission.description}}</ion-label>
           </ion-item>
 
           <ion-list-header>commentaire :</ion-list-header>
-            <ion-item>
-              <ion-label>{{mission.commentaire}}</ion-label>
-            </ion-item>
-          <!-- <div *ngIf="missionUser = 0">
-            <ion-button (click)="onSubmit()"color="primary" type="submit">Assiner</ion-button>
-          </div> -->
+          <ion-item>
+            <ion-label>{{mission.commentaire}}</ion-label>
+          </ion-item>
+          <div *ngIf="missionUser == 0">
+            <ion-button (click)="onSubmitAss()" color="primary" type="submit">Assiner</ion-button>
+          </div>
+          <div *ngIf="missionComplete == 0">
+            <ion-button (click)="onSubmitFin()"color="primary" type="submit">Finir</ion-button>
+          </div>
         </div>
       </ion-item>
     </ion-content>

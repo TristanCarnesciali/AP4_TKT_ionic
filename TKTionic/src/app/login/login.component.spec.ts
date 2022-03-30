@@ -9,7 +9,7 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
