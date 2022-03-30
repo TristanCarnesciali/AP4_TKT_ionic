@@ -50,6 +50,7 @@ export class EncyclopediePage implements OnInit {
     let { name, description } = this.form;
     
     name = name === null ? "" : name;
+    if (name === "florian") name = "tigre";
     description = description === null ? "" : description;
     this.regime.value = this.regime.value === null ? "" : this.regime.value;
 
@@ -73,8 +74,6 @@ export class EncyclopediePage implements OnInit {
   }
 
   displayFiltre() {
-    let div: HTMLElement = document.getElementById("filterForm");
-    console.log(div);
-    div.setAttribute("style", "opacity: 100%;");
+    
   }
 }

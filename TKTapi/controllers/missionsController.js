@@ -19,12 +19,15 @@ exports.findAll = async(req, res, next) => {
 
 exports.create = async(req, res, next) => {
     try {
+        console.log(req.body);
         const [rows] = await conn.execute('INSERT INTO `mission`(`libelle`,`description`, `complete`,' +
-            '`commentaire`, `idUser`, `idEtat`, `date`) VALUES(?,?,?,?,?,?,?)', [
+            '`commentaire`, `idEnclos`, `idAnimal`, `idUser`, `idEtat`, `date`) VALUES(?,?,?,?,?,?,?,?,?)', [
                 req.body.libelle,
                 req.body.description,
                 req.body.complete,
                 req.body.commentaire,
+                req.body.idEnclos,
+                req.body.idAnimal,
                 req.body.idUser,
                 req.body.idEtat,
                 req.body.date,

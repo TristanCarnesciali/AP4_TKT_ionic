@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'alertes-admin',
     loadChildren: () => import('./alertes-admin/alertes-admin.module').then( m => m.AlertesAdminPageModule)
   },
+  {
+    path: 'missions-admin',
+    loadChildren: () => import('./missions-admin/missions-admin.module').then( m => m.MissionsAdminPageModule)
+  },
 
 ];
 

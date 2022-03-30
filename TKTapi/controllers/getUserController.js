@@ -31,4 +31,20 @@ exports.getUser = async(req, res, next) => {
     } catch (err) {
         next(err);
     }
-}
+};
+
+exports.getAllUsers = async(req, res, next) => {
+    try {
+        //on stock le resultat de la requête
+        const [rows] = await conn.execute(
+            "SELECT id, username FROM user", [req.body]
+        );
+        if (rows.length > 0) {
+            return res.json({
+                users: rows
+            })
+        }
+    } catch (err) {
+        next(err);
+    }
+};

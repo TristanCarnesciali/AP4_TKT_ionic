@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+          <ion-menu-button color="dark"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Missions - Admin</ion-title>
+      <ion-button (click)="GotoAjout()" expand="block" fill="clear" shape="round" slot="end">
+        Ajouter
+      </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+
+    <ion-list>
+      <ion-list-header style="font-style: bold">Missions Non Assignés</ion-list-header>
+      <ion-item *ngFor="let mission of missions_non_asignees" (click)="DisplayUnique(mission.id)">
+        <ion-label>{{mission.libelle}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header style="font-style: bold">Missions Non Complétés</ion-list-header>
+      <ion-item *ngFor="let mission of missions_non_complete" (click)="DisplayUnique(mission.id)">
+        <ion-label>{{mission.libelle}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header style="font-style: bold">Missions Complétés</ion-list-header>
+      <ion-item *ngFor="let mission of missions_complete" (click)="DisplayUnique(mission.id)">
+        <ion-label>{{mission.libelle}}</ion-label>
+      </ion-item>
+    </ion-list>
+    
+  </div>
+</ion-content>
