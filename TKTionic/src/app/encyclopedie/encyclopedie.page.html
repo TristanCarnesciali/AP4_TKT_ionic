@@ -3,12 +3,57 @@
         <ion-buttons slot="start">
             <ion-menu-button color="dark"></ion-menu-button>
         </ion-buttons>
-        <ion-title>
-            Encyclopédie
-        </ion-title>
+        <ion-button (click)="displayFiltre()" expand="block" fill="clear" shape="round" slot="end" color="light">
+            Filtre
+        </ion-button>
+        <ion-title>Encyclopédie</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid *ngIf="especes?.length > 0">
+        <ion-row>
+            <ion-col uarr sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let E of especes;">
+                <ion-card (click)="RedirectToUnique(E.id)">
+                    <img src="../../assets/encyclopedie/{{E.image}}.png"/>
+                    <ion-card-header>
+                        <ion-card-title style="text-align: center; font-size: 150%">{{E.nom}}</ion-card-title>
+                    </ion-card-header>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
+    <ion-item *ngIf="especes?.length == 0">Aucun animal trouvé</ion-item>
+
+    
+
+    <!-- <div id="filterBG">
+        <div id="filterForm"> -->
+            <form name="form" (ngSubmit)="submitForm() && f.form.valid" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <ion-item lines="full">
+                        <ion-label position="floating">Nom</ion-label>
+                        <ion-input type="text" placeholder="Nom" class="form-control" name="name" [(ngModel)]="form.name" required #username="ngModel"></ion-input>
+                    </ion-item> 
+                    <ion-item lines="full">
+                        <ion-label position="floating">Description</ion-label>
+                        <ion-input type="text" placeholder="Description" class="form-control" name="description" [(ngModel)]="form.description" required #username="ngModel"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Régime</ion-label>
+                        <ion-list>
+                            <ion-radio-group name="regime" allow-empty-selection="true" (ionChange)="radioChange($event)">
+                                <ion-item *ngFor="let R of regimes">
+                                    <ion-label>{{R.libelle}}</ion-label>
+                                    <ion-radio name="regime" value={{R.id}}></ion-radio>
+                                </ion-item>
+                            </ion-radio-group>
+                        </ion-list>
+                    </ion-item>
+                    <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+                </div>
+            </form>
+        <!-- </div>
+    </div> -->
 </ion-content>

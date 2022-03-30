@@ -1,4 +1,5 @@
 const express = require('express');
+var bodyParser = require('body-parser')
 
 //on appelle toutes les routes
 const user = require('./routes/userRoutes');
@@ -23,6 +24,8 @@ app.use(cors({
 app.use(express.json()); //on renvoit au format json
 app.use(express.urlencoded({ extended: true })); //pour récupérer les infos grâce au body
 
+app.use(bodyParser.json())
+
 app.use(user);
 app.use(mission);
 app.use(niveau);
@@ -45,3 +48,4 @@ app.use(function timeLog(req, res, next) {
 
 //on ouvre le serveur en local
 app.listen(3000, () => console.log('Le serveur est ouvert : http://localhost:3000'));
+

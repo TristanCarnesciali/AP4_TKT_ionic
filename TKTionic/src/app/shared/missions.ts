@@ -7,4 +7,4 @@ export interface Mission {
     idUser: number;
     idEtat: number;
     date: Date;
- }
+}

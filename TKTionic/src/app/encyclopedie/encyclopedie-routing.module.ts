@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: EncyclopediePage
+  },  {
+    path: 'animal',
+    loadChildren: () => import('./animal/animal.module').then( m => m.AnimalPageModule)
   }
+
 ];
 
 @NgModule({

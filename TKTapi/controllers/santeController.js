@@ -50,9 +50,10 @@ exports.findOne = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('UPDATE `sante` SET etat=?, idAnimal=? WHERE id=?', [
+        const [rows] = await conn.execute('UPDATE `sante` SET etat=?, idAnimal=?, commentaire=? WHERE idAnimal=?', [
             req.body.etat,
             req.body.idAnimal,
+            req.body.commentaire,
             req.params.id
         ]);
         if (rows.affectedRows === 1) {

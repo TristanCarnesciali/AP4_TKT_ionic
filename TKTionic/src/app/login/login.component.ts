@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { Router } from '@angular/router';
+import { AppModule } from '../app.module';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
+  
   form: any = {
     username: null,
     password: null
@@ -20,20 +23,31 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   username?: string;
+  toto = "";
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
+  constructor(private authService: AuthService, private storage: Storage, private tokenStorage: TokenStorageService, private router: Router, private AppModule: AppModule) { }
 
   ngOnInit(): void {
+
     this.isLoggedIn = !!this.tokenStorage.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenStorage.getUser();
       this.roles = user.roles;
       this.username = user.username;
+      this.toto = this.tokenStorage.getUser();
     }
   }
+  ionViewWillLeave() {
+    window.location.reload();
+  }
 
-  onSubmit(): void {
+  userdata;
+  roledata;
+
+
+  async onSubmit() {
     const { username, password } = this.form;
+    this.getuserv2(username);
     this.authService.login(username, password).subscribe({
       next: data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -41,7 +55,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/missions'])
+        this.router.navigate(['/home'])
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -49,8 +63,31 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  
+
+  getuserv2(username) {
+    fetch(`http://127.0.0.1:3000/getuserv2/${username}`)
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.userdata = data.user[0].id;
+        this.roledata = data.user[0].idRole;
+        this.setIdUser(this.userdata);
+        this.setUserRole(this.roledata);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
+  setIdUser(id) {
+    this.storage.set("id", id)
+  }
+  setUserRole(id){
+    this.storage.set("role", id)
+  }
+
   reloadPage(): void {
     window.location.reload();
   }
+
 }

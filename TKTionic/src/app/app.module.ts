@@ -4,26 +4,27 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { LoginComponent } from './login/login.component';
-
 import { Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, HttpClientModule, FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, Platform, StatusBar, 
+  imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, ReactiveFormsModule, HttpClientModule, FormsModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Platform, StatusBar,
     SplashScreen,
-    { 
-      provide: RouteReuseStrategy, 
-      useClass: IonicRouteStrategy 
-    }],
+  {
+    provide: RouteReuseStrategy,
+    useClass: IonicRouteStrategy
+  }],
   bootstrap: [AppComponent],
 })
 
-export class AppModule {}
+export class AppModule {
+  idUser: number;
+}

@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: MissionsPage
+  },  {
+    path: 'missionid',
+    loadChildren: () => import('./missionid/missionid.module').then( m => m.MissionidPageModule)
   }
+
 ];
 
 @NgModule({

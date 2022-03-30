@@ -1,14 +1,45 @@
-<ion-header>
-    <ion-toolbar color="secondary">
-        <ion-buttons slot="start">
-            <ion-menu-button color="dark"></ion-menu-button>
-        </ion-buttons>
-        <ion-title>
-            Alertes
-        </ion-title>
-    </ion-toolbar>
-</ion-header>
+<ion-nav>
+    <ion-header>
+        <ion-toolbar color="secondary">
+            <ion-buttons slot="start">
+                <ion-menu-button color="dark"></ion-menu-button>
+            </ion-buttons>
+            <ion-title>
+                Alertes
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-<ion-content>
 
-</ion-content>
+    <ion-content class="ion-padding">
+        <ion-list>
+            <ion-item *ngFor="let avert of avertissementData" button (click)="showDetail(avert.id)">
+                <ion-label class="ion-text-wrap">
+                    <h3>{{avert.libelle}}</h3>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div>
+                <ion-item>
+                    <ion-label>Titre</ion-label>
+                    <ion-input [(ngModel)]="form.libelle" name="libelle" placeholder="titre"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Description</ion-label>
+                    <ion-input [(ngModel)]="form.description" name="description" placeholder="description"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>niv</ion-label>
+                    <ion-radio-group name="niveau" (ionChange)="radioChange($event)" [(ngModel)]="form.niveau">
+                        <ion-item *ngFor="let niv of niveauData">
+                            <ion-label>{{niv.libelle}}</ion-label>
+                            <ion-radio class="form-control" name="niveau" value="{{niv.id}}"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                </ion-item>
+                <ion-button color="primary" type="submit">Création</ion-button>
+            </div>
+        </form>
+    </ion-content>
+</ion-nav>

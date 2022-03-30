@@ -1,4 +1,5 @@
 const conn = require('../dbConnexion').promise();
+const url = require("url");
 
 // trouver toute les mission de la bdd
 exports.findAll = async(req, res, next) => {
@@ -19,8 +20,8 @@ exports.findAll = async(req, res, next) => {
 
 exports.create = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('INSERT INTO espece SET nom=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=?', [
-            req.body.nom,
+        const [rows] = await conn.execute('INSERT INTO espece SET libelle=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=?', [
+            req.body.libelle,
             req.body.image,
             req.body.description,
             req.body.taille,
@@ -55,8 +56,8 @@ exports.findOne = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
     try {
-        const [rows] = await conn.execute('UPDATE `espece` SET nom=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=? WHERE id=?', [
-            req.body.nom,
+        const [rows] = await conn.execute('UPDATE `espece` SET libelle=?, image=?, description=?, taille=?, poidsMin=?, poidsMax=?, idType=? WHERE id=?', [
+            req.body.libelle,
             req.body.image,
             req.body.description,
             req.body.taille,
@@ -85,6 +86,18 @@ exports.drop = async(req, res, next) => {
                 message: "The espece has been successfully deleted.",
             });
         }
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.filter = async(req, res, next) => {
+    try {
+        const query = url.parse(req.url, true).query;
+        const [rows] = await conn.execute(`SELECT * FROM espece WHERE UPPER(libelle) LIKE UPPER("%${query.nom}%") AND UPPER(description) LIKE UPPER("%${query.desc}%") AND idType LIKE "%${query.regime}%"`);
+        return res.json({
+            espece: rows
+        })
     } catch (err) {
         next(err);
     }

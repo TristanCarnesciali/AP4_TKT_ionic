@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="Retour()" expand="block" fill="clear" shape="round" slot="start">
+      Retour
+    </ion-button>
+    <ion-title>Ajout d'une mission</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form name="form" (ngSubmit)="submitForm() && f.form.valid" #f="ngForm" novalidate>
+    <div class="form-group">
+        <ion-item lines="full">
+            <ion-label position="floating">Libelle</ion-label>
+            <ion-input type="text" placeholder="Nom" class="form-control" name="libelle" [(ngModel)]="form.libelle" required #username="ngModel"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea placeholder="Description" class="form-control" name="description" [(ngModel)]="form.description" required #username="ngModel"></ion-textarea>
+        </ion-item>
+        
+        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+    </div>
+</form>
+</ion-content>

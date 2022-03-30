@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: AlertesPage
+  },
+  {
+    path: 'detail',
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
   }
+
 ];
 
 @NgModule({

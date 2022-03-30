@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { MenuController } from '@ionic/angular';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -10,22 +11,17 @@ import { MenuController } from '@ionic/angular';
 })
 
 export class HomePage implements OnInit {
+  // dataUser: any = [];
+  // id = this.actRoute.snapshot.params['id'];
 
-  missionData: any = [];
-  constructor(public authService: AuthService, private actRoute: ActivatedRoute, private menu: MenuController) {}
+  constructor(public auth: AuthService, private tokenStorage: TokenStorageService, private actRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    const id = this.actRoute.snapshot.paramMap.get('id');
-
-    this.authService.getAll().subscribe((data: any)=>{
-      this.missionData = data.mission;
-      console.log(this.missionData);
-    })
-   }
-
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
+    // this.auth.getUser(this.id).subscribe((data: {}) => {
+    //   this.dataUser = data;
+    //   console.log(this.dataUser)
+    // })
   }
+
 
 }
