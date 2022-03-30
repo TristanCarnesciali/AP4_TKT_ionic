@@ -8,7 +8,24 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content>
+    <form (ngSubmit)="create()">
+        <ion-item>
+            <ion-input type="text" [(ngModel)]="form.username" name="username" placeholder="Nom d'utilisateur" style="text-align:center;"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input [(ngModel)]="form.email" name="email" placeholder="Email" style="text-align:center;"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input [(ngModel)]="form.password" name="password" placeholder="Mot de passe" type="password" style="text-align:center;"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input name="idRole" placeholder="1=admin ; 2=utilisateur" style="text-align:center;"></ion-input>
+        </ion-item>
+        <ion-button style="text-align:center;" color="secondary" expand="full" type="submit">
+            <ion-icon slot="start" name="person-add" color="dark" shape="round"></ion-icon>
+            Créer
+        </ion-button>
+    </form>
 
 </ion-content>
