@@ -159,6 +159,24 @@ exports.updateMfin = async(req, res, next) => {
     }
 }
 
+exports.updateCom = async(req, res, next) => {
+    try {
+        const [rows] = await conn.execute('UPDATE `mission` SET commentaire=? WHERE id=? and libelle=? and description=? ', [
+            req.body.commentaire,
+            req.params.id,
+            req.body.libelle,
+            req.body.description,
+        ]);
+        if (rows.affectedRows === 1) {
+            return res.status(201).json({
+                message: "The mission has been successfully updated.",
+            });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
 exports.drop = async(req, res, next) => {
     try {
         const [rows] = await conn.execute("DELETE FROM mission WHERE id = ?", [

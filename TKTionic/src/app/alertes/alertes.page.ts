@@ -64,7 +64,10 @@ export class AlertesPage implements OnInit {
     this.http
       .post(`http://127.0.0.1:3000/avertissement`, { libelle: libelle, description: description, idNiveau: niveau })
       .subscribe({
-        next: (response) => console.log(response),
+        next: (response) =>         {
+          console.log(response);
+          window.location.reload();
+        },
         error: (error) => console.log(error),
       });
   }

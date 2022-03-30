@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -12,8 +14,10 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class MissionidPage implements OnInit {
 
-  constructor(private route: ActivatedRoute, private storage: Storage, private router: Router, private http: HttpClient) { }
-
+  constructor(private route: ActivatedRoute, private storage: Storage, private router: Router, private http: HttpClient, public formBuilder: FormBuilder) { }
+  form: any = {
+    commentaire: null,
+  };
   idmission = this.route.snapshot.queryParams.id;
 
   ngOnInit() {
@@ -22,10 +26,13 @@ export class MissionidPage implements OnInit {
   }
   missionId = this.idmission;
   missionData = [];
+
   missionUser = [];
+  missionComplete = [];
+  missionCom = [];
+
   missionLibelle = [];
   missionDescription = [];
-  missionComplete = [];
 
   ionViewDidLeave() {
     this.missionData = [];
@@ -34,6 +41,7 @@ export class MissionidPage implements OnInit {
     this.missionLibelle = [];
     this.missionDescription = [];
     this.missionComplete = [];
+    this.missionCom = [];
   }
 
   ionViewDidEnter() {
@@ -51,8 +59,7 @@ export class MissionidPage implements OnInit {
         this.missionLibelle.push(data.mission.libelle);
         this.missionDescription.push(data.mission.description);
         this.missionComplete.push(data.mission.complete);
-        
-
+        this.missionCom.push(data.mission.commentaire);
       })
       .catch(function (error) {
         console.log(error);
@@ -68,9 +75,12 @@ export class MissionidPage implements OnInit {
     const description = this.missionDescription.toString();
     console.log(libelle, description)
     this.http
-      .put(`http://127.0.0.1:3000/missionset/${this.idmission}`, {idUser: userid, libelle: libelle, description: description})
+      .put(`http://127.0.0.1:3000/missionAss/${this.idmission}`, {idUser: userid, libelle: libelle, description: description})
       .subscribe({
-        next: (response) => console.log(response),
+        next: (response) =>         {
+          console.log(response);
+          window.location.reload();
+        },
         error: (error) => console.log(error),
       });
   }
@@ -82,7 +92,28 @@ export class MissionidPage implements OnInit {
     this.http
       .put(`http://127.0.0.1:3000/missionFin/${this.idmission}`, { libelle: libelle, description: description})
       .subscribe({
-        next: (response) => console.log(response),
+        next: (response) =>         {
+          console.log(response);
+          window.location.reload();
+        },
+        error: (error) => console.log(error),
+      });
+  }
+
+  async onSubmitCom(){
+    const libelle = this.missionLibelle.toString();
+    const description = this.missionDescription.toString();
+    const { commentaire } = this.form;
+
+    console.log(libelle, description, commentaire);
+    this.http
+      .put(`http://127.0.0.1:3000/missionCom/${this.idmission}`, { commentaire: commentaire, libelle: libelle, description: description})
+      .subscribe({
+        next: (response) =>
+        {
+          console.log(response);
+          window.location.reload();
+        },
         error: (error) => console.log(error),
       });
   }
