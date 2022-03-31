@@ -79,6 +79,7 @@ Install dependencies
 
 ```bash
   npm install
+  npm install @ionic/storage-angular
 ```
 
 Start the server
